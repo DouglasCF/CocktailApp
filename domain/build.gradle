@@ -1,0 +1,6 @@
+apply from: '../base-build.gradle'
+
+dependencies {
+    api project(":common")
+    testImplementation project(":common")
+}
