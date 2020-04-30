@@ -2,7 +2,7 @@ buildscript {
     ext {
         compile_sdk_version = 29
         build_tools_version = "29.0.3"
-        application_id = "br.com.cubefy.pubfy"
+        application_id = "br.com.fornaro.cocktailapp"
         min_sdk_version = 21
         target_sdk_version = 29
         version_code = 1

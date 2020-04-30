@@ -8,7 +8,4 @@ private val useCasesModules = module {
 private val repositoriesModules = module {
 }
 
-val modules = listOf(
-    useCasesModules,
-    repositoriesModules
-)
+val domainModules = listOf(useCasesModules, repositoriesModules)
