@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Categories</string>
+
+    <string name="bottom_nav_menu_categories">Categories</string>
+    <string name="bottom_nav_menu_search">Search</string>
+    <string name="bottom_nav_menu_favorites">Favorites</string>
+</resources>
