@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.fornaro.android.fragments.BaseFragment
@@ -39,7 +40,7 @@ class CategoriesFragment : BaseFragment() {
     }
 
     override fun handleLoading(visible: Boolean) {
-        visible
+        loadingView.isVisible = visible
     }
 
     @Suppress("UNCHECKED_CAST")
