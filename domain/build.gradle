@@ -1,6 +1,16 @@
 apply from: '../base-build.gradle'
 
+android {
+    defaultConfig {
+        buildConfigField("String", "BASE_URL", "\"https://www.thecocktaildb.com/api/json/v1/1/\"")
+    }
+}
+
 dependencies {
     api project(":common")
     testImplementation project(":common")
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 }

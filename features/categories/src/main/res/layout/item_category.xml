@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="category"
+            type="br.com.fornaro.domain.models.Category" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:id="@+id/categoryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{category.name}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Category Item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

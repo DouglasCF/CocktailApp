@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion compile_sdk_version
@@ -14,6 +15,19 @@ android {
     versionName "1.0"
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  dataBinding {
+    enabled true
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
   }
 
   buildTypes {
