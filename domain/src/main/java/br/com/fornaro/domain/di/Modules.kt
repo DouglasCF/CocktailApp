@@ -1,7 +1,9 @@
 package br.com.fornaro.domain.di
 
+import android.content.Context
 import br.com.fornaro.domain.BuildConfig
 import br.com.fornaro.domain.api.CategoryApi
+import br.com.fornaro.domain.api.ConnectivityInterceptor
 import br.com.fornaro.domain.repositories.CategoryRepository
 import br.com.fornaro.domain.usecases.CategoryUseCases
 import okhttp3.OkHttpClient
@@ -18,12 +20,13 @@ private val repositoriesModules = module {
 }
 
 private val netWorkModules = module {
-    single { providesOkHttpClient() }
+    single { providesOkHttpClient(get()) }
     single { providesRetrofit(get()) }
     single { providesCategoryApi(get()) }
 }
 
-fun providesOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+fun providesOkHttpClient(context: Context): OkHttpClient = OkHttpClient.Builder()
+    .addInterceptor(ConnectivityInterceptor(context))
     .build()
 
 fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()

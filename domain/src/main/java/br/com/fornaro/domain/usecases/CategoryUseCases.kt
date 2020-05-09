@@ -1,6 +1,5 @@
 package br.com.fornaro.domain.usecases
 
-import br.com.fornaro.domain.models.Category
 import br.com.fornaro.domain.repositories.CategoryRepository
 
 class CategoryUseCases(
@@ -8,6 +7,5 @@ class CategoryUseCases(
 ) {
 
     suspend fun loadCategories() = repository.loadCategories()
-        .run { drinks.map { Category(name = it.strCategory) } }
 
 }

@@ -14,7 +14,7 @@ class CategoriesViewModel(
         loadCategories()
     }
 
-    private fun loadCategories() = viewModelScope.launch {
+    fun loadCategories() = viewModelScope.launch {
         _state.value = State.Loading
         _state.value = State.runBlocking { categoryUseCases.loadCategories() }
     }
