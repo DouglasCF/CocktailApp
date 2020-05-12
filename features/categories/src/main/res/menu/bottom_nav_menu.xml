@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/establishmentFragment"
+        android:id="@+id/categoriesFragment"
         android:icon="@drawable/ic_local_bar"
         android:title="@string/bottom_nav_menu_categories" />
 
     <item
-        android:id="@+id/ordersFragment"
+        android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search"
         android:title="@string/bottom_nav_menu_search" />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/favoritesFragment"
         android:icon="@drawable/ic_favorite"
         android:title="@string/bottom_nav_menu_favorites" />
 

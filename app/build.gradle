@@ -41,4 +41,5 @@ android {
 
 dependencies {
   implementation project(":features:categories")
+  implementation project(":features:search")
 }
