@@ -6,6 +6,8 @@ import br.com.fornaro.domain.api.CategoryApi
 import br.com.fornaro.domain.api.ConnectivityInterceptor
 import br.com.fornaro.domain.repositories.CategoryRepository
 import br.com.fornaro.domain.usecases.CategoryUseCases
+import br.com.fornaro.domain.usecases.FavoritesUseCases
+import br.com.fornaro.domain.usecases.SearchUseCases
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -13,6 +15,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 private val useCasesModules = module {
     single { CategoryUseCases(get()) }
+    single { SearchUseCases() }
+    single { FavoritesUseCases() }
 }
 
 private val repositoriesModules = module {

@@ -16,4 +16,10 @@
         android:name="com.fornaro.search.SearchFragment"
         android:label="@string/search"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.fornaro.favorites.FavoritesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

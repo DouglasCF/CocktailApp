@@ -1,3 +1,4 @@
 rootProject.name='CocktailApp'
 include ':app', ':common', ':domain', ':navigation', ':core', ':android'
-include ':features:categories', ':features:search'
+include ':features:categories', ':features:search', ':features:favorites'
+
