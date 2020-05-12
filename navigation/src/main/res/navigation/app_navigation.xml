@@ -39,5 +39,22 @@
             android:name="categoryName"
             app:argType="string"
             app:nullable="false" />
+        <action
+            android:id="@+id/drinkDetailFragment"
+            app:destination="@id/drinkDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/drinkDetailFragment"
+        android:name="com.fornaro.drinkdetail.DrinkDetailFragment"
+        tools:layout="@layout/fragment_drink_detail">
+        <argument
+            android:name="drinkId"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>

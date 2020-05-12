@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,8 @@ class DrinksFragment : BaseFragment() {
 
     private val viewAdapter by lazy {
         DrinkAdapter {
+            val direction = DrinksFragmentDirections.drinkDetailFragment(it)
+            findNavController().navigate(direction)
         }
     }
 

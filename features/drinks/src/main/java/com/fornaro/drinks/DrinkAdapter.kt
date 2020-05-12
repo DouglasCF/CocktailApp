@@ -36,7 +36,7 @@ class DrinkAdapter(
         ) = with(binding) {
             this.drink = drink
             executePendingBindings()
-            container.setOnClickListener {  }
+            container.setOnClickListener { action.invoke(drink.id) }
         }
     }
 }

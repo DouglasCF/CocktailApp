@@ -44,4 +44,5 @@ dependencies {
   implementation project(":features:search")
   implementation project(":features:favorites")
   implementation project(":features:drinks")
+  implementation project(":features:drinkdetail")
 }
