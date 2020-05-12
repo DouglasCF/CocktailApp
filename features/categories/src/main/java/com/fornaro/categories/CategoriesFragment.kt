@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.fornaro.android.fragments.BaseFragment
@@ -21,7 +22,12 @@ class CategoriesFragment : BaseFragment() {
 
     override val viewModel: CategoriesViewModel by viewModel()
 
-    private val viewAdapter by lazy { CategoryAdapter() }
+    private val viewAdapter by lazy {
+        CategoryAdapter {
+            val direction = CategoriesFragmentDirections.drinksFragment(it)
+            findNavController().navigate(direction)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

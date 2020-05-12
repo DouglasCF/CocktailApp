@@ -6,6 +6,7 @@ import br.com.fornaro.domain.api.CategoryApi
 import br.com.fornaro.domain.api.ConnectivityInterceptor
 import br.com.fornaro.domain.repositories.CategoryRepository
 import br.com.fornaro.domain.usecases.CategoryUseCases
+import br.com.fornaro.domain.usecases.DrinksUseCases
 import br.com.fornaro.domain.usecases.FavoritesUseCases
 import br.com.fornaro.domain.usecases.SearchUseCases
 import okhttp3.OkHttpClient
@@ -17,6 +18,7 @@ private val useCasesModules = module {
     single { CategoryUseCases(get()) }
     single { SearchUseCases() }
     single { FavoritesUseCases() }
+    single { DrinksUseCases() }
 }
 
 private val repositoriesModules = module {

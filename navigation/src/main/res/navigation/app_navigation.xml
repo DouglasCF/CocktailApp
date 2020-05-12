@@ -9,7 +9,15 @@
         android:id="@+id/categoriesFragment"
         android:name="com.fornaro.categories.CategoriesFragment"
         android:label="@string/categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/drinksFragment"
+            app:destination="@id/drinksFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
@@ -22,4 +30,14 @@
         android:name="com.fornaro.favorites.FavoritesFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/drinksFragment"
+        android:name="com.fornaro.drinks.DrinksFragment"
+        tools:layout="@layout/fragment_drinks">
+        <argument
+            android:name="categoryName"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
 </navigation>

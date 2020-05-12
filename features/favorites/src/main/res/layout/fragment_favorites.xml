@@ -5,7 +5,7 @@
     android:id="@+id/favorites"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="..FavoritesFragment">
+    tools:context="com.fornaro.favorites.FavoritesFragment">
 
     <TextView
         android:id="@+id/message"

@@ -11,7 +11,7 @@ class CategoryRepository(
 ) {
 
     suspend fun loadCategories() = withContext(Dispatchers.IO) {
-        delay(7000) // Just to see the beautiful loading animation :)
+        delay(5000) // Just to see the beautiful loading animation :)
         api.getCategories()
             .mapToCategoriesModel()
     }

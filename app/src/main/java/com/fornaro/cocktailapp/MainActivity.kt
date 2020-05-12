@@ -2,6 +2,8 @@ package com.fornaro.cocktailapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -25,5 +27,22 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        visibilityNavElements(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(R.id.navController).navigateUp() || super.onSupportNavigateUp()
+    }
+
+    private fun visibilityNavElements(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.categoriesFragment,
+                R.id.searchFragment,
+                R.id.favoritesFragment -> bottomNavigationView.isVisible = true
+                else -> bottomNavigationView.isVisible = false
+            }
+        }
     }
 }
