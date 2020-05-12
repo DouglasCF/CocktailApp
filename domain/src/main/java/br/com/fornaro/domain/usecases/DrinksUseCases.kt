@@ -1,4 +1,10 @@
 package br.com.fornaro.domain.usecases
 
-class DrinksUseCases {
+import br.com.fornaro.domain.repositories.DrinksRepository
+
+class DrinksUseCases(
+    private val drinksRepository: DrinksRepository
+) {
+
+    suspend fun loadDrinks(categoryName: String) = drinksRepository.loadDrinks(categoryName)
 }

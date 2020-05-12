@@ -4,7 +4,9 @@ import android.content.Context
 import br.com.fornaro.domain.BuildConfig
 import br.com.fornaro.domain.api.CategoryApi
 import br.com.fornaro.domain.api.ConnectivityInterceptor
+import br.com.fornaro.domain.api.DrinksApi
 import br.com.fornaro.domain.repositories.CategoryRepository
+import br.com.fornaro.domain.repositories.DrinksRepository
 import br.com.fornaro.domain.usecases.CategoryUseCases
 import br.com.fornaro.domain.usecases.DrinksUseCases
 import br.com.fornaro.domain.usecases.FavoritesUseCases
@@ -18,17 +20,19 @@ private val useCasesModules = module {
     single { CategoryUseCases(get()) }
     single { SearchUseCases() }
     single { FavoritesUseCases() }
-    single { DrinksUseCases() }
+    single { DrinksUseCases(get()) }
 }
 
 private val repositoriesModules = module {
     single { CategoryRepository(get()) }
+    single { DrinksRepository(get()) }
 }
 
 private val netWorkModules = module {
     single { providesOkHttpClient(get()) }
     single { providesRetrofit(get()) }
     single { providesCategoryApi(get()) }
+    single { providesDrinksApi(get()) }
 }
 
 fun providesOkHttpClient(context: Context): OkHttpClient = OkHttpClient.Builder()
@@ -42,5 +46,6 @@ fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
     .build()
 
 fun providesCategoryApi(retrofit: Retrofit): CategoryApi = retrofit.create(CategoryApi::class.java)
+fun providesDrinksApi(retrofit: Retrofit): DrinksApi = retrofit.create(DrinksApi::class.java)
 
 val domainModules = listOf(useCasesModules, repositoriesModules, netWorkModules)
