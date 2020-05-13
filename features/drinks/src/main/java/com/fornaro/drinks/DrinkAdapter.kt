@@ -7,7 +7,7 @@ import br.com.fornaro.domain.models.Drink
 import br.com.fornaro.drinks.databinding.ItemDrinkBinding
 
 class DrinkAdapter(
-    private val action: ((String) -> Unit) = {}
+    private val action: ((Drink) -> Unit) = {}
 ) : RecyclerView.Adapter<DrinkAdapter.ViewHolder>() {
 
     private val list = mutableListOf<Drink>()
@@ -32,11 +32,11 @@ class DrinkAdapter(
 
         fun bind(
             drink: Drink,
-            action: ((String) -> Unit) = {}
+            action: ((Drink) -> Unit) = {}
         ) = with(binding) {
             this.drink = drink
             executePendingBindings()
-            container.setOnClickListener { action.invoke(drink.id) }
+            container.setOnClickListener { action.invoke(drink) }
         }
     }
 }

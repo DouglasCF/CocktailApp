@@ -56,5 +56,9 @@
             android:name="drinkId"
             app:argType="string"
             app:nullable="false" />
+        <argument
+            android:name="drinkName"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>

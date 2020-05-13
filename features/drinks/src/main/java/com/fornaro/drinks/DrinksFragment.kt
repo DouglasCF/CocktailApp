@@ -29,7 +29,7 @@ class DrinksFragment : BaseFragment() {
 
     private val viewAdapter by lazy {
         DrinkAdapter {
-            val direction = DrinksFragmentDirections.drinkDetailFragment(it)
+            val direction = DrinksFragmentDirections.drinkDetailFragment(it.id, it.name)
             findNavController().navigate(direction)
         }
     }

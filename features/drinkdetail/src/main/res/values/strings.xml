@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Drink Detail</string>
+
+    <string name="category">Category</string>
+    <string name="glass">Glass</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
 </resources>

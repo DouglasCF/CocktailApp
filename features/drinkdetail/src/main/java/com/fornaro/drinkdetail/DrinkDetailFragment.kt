@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import br.com.fornaro.android.fragments.BaseFragment
 import br.com.fornaro.domain.api.NoConnectivityException
 import br.com.fornaro.domain.models.response.DrinkDetailModel
 import br.com.fornaro.drinkdetail.R
+import br.com.fornaro.drinkdetail.databinding.FragmentDrinkDetailBinding
 import kotlinx.android.synthetic.main.fragment_drink_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -25,12 +27,20 @@ class DrinkDetailFragment : BaseFragment() {
         parametersOf(args.drinkId)
     }
 
+    private lateinit var binding: FragmentDrinkDetailBinding
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = args.drinkName
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_drink_detail, container, false)
+        binding = FragmentDrinkDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun handleLoading(visible: Boolean) {
@@ -38,7 +48,7 @@ class DrinkDetailFragment : BaseFragment() {
     }
 
     override fun handleData(data: Any?) {
-        (data as DrinkDetailModel).let { }
+        (data as DrinkDetailModel).let { binding.drink = it.drink }
     }
 
     override fun handleError(error: Throwable?) {

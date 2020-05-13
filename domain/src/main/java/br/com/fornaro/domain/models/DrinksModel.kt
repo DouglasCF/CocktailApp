@@ -13,4 +13,7 @@ data class Drink(
     val isAlcoholic: Boolean? = null,
     val category: String? = null,
     val ingredients: List<String>? = null
-)
+) {
+    val ingredientsString
+        get() = ingredients?.joinToString(separator = ", ")
+}
