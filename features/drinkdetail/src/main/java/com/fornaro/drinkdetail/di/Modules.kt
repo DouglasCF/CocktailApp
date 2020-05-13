@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 private val viewModelModules = module {
     viewModel { (id: String) ->
-        DrinkDetailViewModel(id)
+        DrinkDetailViewModel(get(), id)
     }
 }
 
