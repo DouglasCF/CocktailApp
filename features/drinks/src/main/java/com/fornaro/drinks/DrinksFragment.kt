@@ -11,8 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import br.com.fornaro.android.fragments.BaseFragment
 import br.com.fornaro.domain.api.NoConnectivityException
 import br.com.fornaro.domain.models.DrinksModel
@@ -56,9 +55,8 @@ class DrinksFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() = with(recyclerView) {
-        layoutManager = LinearLayoutManager(context)
+        layoutManager = GridLayoutManager(context, 2)
         adapter = viewAdapter
-        addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
     override fun handleLoading(visible: Boolean) {

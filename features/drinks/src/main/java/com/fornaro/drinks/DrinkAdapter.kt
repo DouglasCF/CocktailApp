@@ -36,7 +36,7 @@ class DrinkAdapter(
         ) = with(binding) {
             this.drink = drink
             executePendingBindings()
-            container.setOnClickListener { action.invoke(drink) }
+            drinkImage.setOnClickListener { action.invoke(drink) }
         }
     }
 }
