@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_drink_detail.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class DrinkDetailFragment : BaseFragment() {
+class DrinkDetailFragment : BaseFragment<DrinkDetailModel>() {
 
     private val args: DrinkDetailFragmentArgs by navArgs()
 
@@ -47,8 +47,8 @@ class DrinkDetailFragment : BaseFragment() {
         loadingView.isVisible = visible
     }
 
-    override fun handleData(data: Any?) {
-        (data as DrinkDetailModel).let { binding.drink = it.drink }
+    override fun handleData(data: DrinkDetailModel?) {
+        data?.run { binding.drink = drink }
     }
 
     override fun handleError(error: Throwable?) {

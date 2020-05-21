@@ -7,12 +7,12 @@ import androidx.lifecycle.Observer
 import br.com.fornaro.android.viewmodel.BaseViewModel
 import br.com.fornaro.android.viewmodel.State
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<T> : Fragment() {
 
     abstract val viewModel: BaseViewModel
 
     abstract fun handleLoading(visible: Boolean)
-    abstract fun handleData(data: Any?)
+    abstract fun handleData(data: T?)
     abstract fun handleError(error: Throwable?)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,10 +24,11 @@ abstract class BaseFragment : Fragment() {
         state.observe(viewLifecycleOwner, Observer { handleState(it) })
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun handleState(state: State) {
         handleLoading(false)
         when {
-            state.isSuccess() -> handleData(state.getDataOrNull())
+            state.isSuccess() -> handleData(state.getDataOrNull() as T)
             state.isError() -> handleError(state.getErrorOrNull())
             state.isLoading() -> handleLoading(true)
         }

@@ -18,7 +18,7 @@ import br.com.fornaro.domain.models.CategoriesModel
 import kotlinx.android.synthetic.main.fragment_categories.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class CategoriesFragment : BaseFragment() {
+class CategoriesFragment : BaseFragment<CategoriesModel>() {
 
     override val viewModel: CategoriesViewModel by viewModel()
 
@@ -53,8 +53,8 @@ class CategoriesFragment : BaseFragment() {
         loadingView.isVisible = visible
     }
 
-    override fun handleData(data: Any?) {
-        (data as CategoriesModel).let { viewAdapter.updateData(it.categoryList) }
+    override fun handleData(data: CategoriesModel?) {
+        data?.run { viewAdapter.updateData(categoryList) }
     }
 
     override fun handleError(error: Throwable?) {

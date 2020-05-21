@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_drinks.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class DrinksFragment : BaseFragment() {
+class DrinksFragment : BaseFragment<DrinksModel>() {
 
     override val viewModel: DrinksViewModel by viewModel {
         parametersOf(args.categoryName)
@@ -63,8 +63,8 @@ class DrinksFragment : BaseFragment() {
         loadingView.isVisible = visible
     }
 
-    override fun handleData(data: Any?) {
-        (data as DrinksModel).let { viewAdapter.updateData(it.drinkList) }
+    override fun handleData(data: DrinksModel?) {
+        data?.run { viewAdapter.updateData(drinkList) }
     }
 
     override fun handleError(error: Throwable?) {
