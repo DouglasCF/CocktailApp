@@ -1,9 +1,5 @@
 package br.com.fornaro.domain.models
 
-data class DrinksModel(
-    val drinkList: List<Drink>
-)
-
 data class Drink(
     val id: String,
     val name: String,
@@ -14,6 +10,6 @@ data class Drink(
     val category: String? = null,
     val ingredients: List<String>? = null
 ) {
-    val ingredientsString
+    val ingredientsAsString
         get() = ingredients?.joinToString(separator = ", ")
 }

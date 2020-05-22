@@ -7,10 +7,6 @@ android {
 }
 
 dependencies {
-    api project(":common")
-    testImplementation project(":common")
-
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation libraries + networkLibraries
+    testImplementation testLibraries
 }

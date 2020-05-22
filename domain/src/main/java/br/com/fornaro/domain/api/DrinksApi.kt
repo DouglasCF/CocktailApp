@@ -1,6 +1,6 @@
 package br.com.fornaro.domain.api
 
-import br.com.fornaro.domain.models.response.DrinksResponse
+import br.com.fornaro.domain.api.response.DrinksResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

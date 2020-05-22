@@ -45,4 +45,6 @@ dependencies {
   implementation project(":features:favorites")
   implementation project(":features:drinks")
   implementation project(":features:drinkdetail")
+  implementation featureDependencies
+  kapt kaptLibraries
 }

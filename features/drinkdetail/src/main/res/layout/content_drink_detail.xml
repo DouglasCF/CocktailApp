@@ -150,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="@{drink.ingredientsString}"
+                        android:text="@{drink.ingredientsAsString}"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"

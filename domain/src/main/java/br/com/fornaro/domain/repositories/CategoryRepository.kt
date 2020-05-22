@@ -1,7 +1,7 @@
 package br.com.fornaro.domain.repositories
 
 import br.com.fornaro.domain.api.CategoryApi
-import br.com.fornaro.domain.mappers.mapToCategoriesModel
+import br.com.fornaro.domain.api.response.CategoriesResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -15,4 +15,6 @@ class CategoryRepository(
         api.getCategories()
             .mapToCategoriesModel()
     }
+
+    private fun CategoriesResponse.mapToCategoriesModel() = drinks.map { it.strCategory }
 }

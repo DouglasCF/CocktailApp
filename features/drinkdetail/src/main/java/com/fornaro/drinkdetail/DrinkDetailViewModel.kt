@@ -3,20 +3,21 @@ package com.fornaro.drinkdetail
 import androidx.lifecycle.viewModelScope
 import br.com.fornaro.android.viewmodel.BaseViewModel
 import br.com.fornaro.android.viewmodel.State
-import br.com.fornaro.domain.usecases.DrinkDetailUseCases
+import br.com.fornaro.domain.models.Drink
+import br.com.fornaro.domain.usecases.LoadDrinkDetailUseCase
 import kotlinx.coroutines.launch
 
 class DrinkDetailViewModel(
-    private val drinkDetailUseCases: DrinkDetailUseCases,
+    private val loadDrinkDetailUseCase: LoadDrinkDetailUseCase,
     private val drinkId: String
-) : BaseViewModel() {
+) : BaseViewModel<Drink>() {
 
     init {
         loadDrink()
     }
 
     fun loadDrink() = viewModelScope.launch {
-        _state.value = State.Loading
-        _state.value = State.runBlocking { drinkDetailUseCases.loadDrink(drinkId) }
+        state.value = State.Loading()
+        state.value = State.runBlocking { loadDrinkDetailUseCase.loadDrink(drinkId) }
     }
 }

@@ -9,28 +9,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import br.com.fornaro.android.fragments.BaseFragment
+import br.com.fornaro.android.fragments.StateHandler
 import br.com.fornaro.domain.api.NoConnectivityException
-import br.com.fornaro.domain.models.DrinksModel
+import br.com.fornaro.domain.models.Drink
 import br.com.fornaro.drinks.R
-import kotlinx.android.synthetic.main.fragment_drinks.*
+import kotlinx.android.synthetic.main.fragment_drinks.errorView
+import kotlinx.android.synthetic.main.fragment_drinks.loadingView
+import kotlinx.android.synthetic.main.fragment_drinks.recyclerView
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class DrinksFragment : BaseFragment<DrinksModel>() {
+class DrinksFragment : Fragment(), StateHandler {
 
-    override val viewModel: DrinksViewModel by viewModel {
+    private val viewModel: DrinksViewModel by viewModel {
         parametersOf(args.categoryName)
-    }
-
-    private val viewAdapter by lazy {
-        DrinkAdapter {
-            val direction = DrinksFragmentDirections.drinkDetailFragment(it.id, it.name)
-            findNavController().navigate(direction)
-        }
     }
 
     private val args: DrinksFragmentArgs by navArgs()
@@ -52,19 +48,24 @@ class DrinksFragment : BaseFragment<DrinksModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+
+        viewModel.observeState(viewLifecycleOwner, this, ::handleData)
     }
 
     private fun setupRecyclerView() = with(recyclerView) {
         layoutManager = GridLayoutManager(context, 2)
-        adapter = viewAdapter
+        adapter = DrinkAdapter {
+            val direction = DrinksFragmentDirections.drinkDetailFragment(it.id, it.name)
+            findNavController().navigate(direction)
+        }
     }
 
     override fun handleLoading(visible: Boolean) {
         loadingView.isVisible = visible
     }
 
-    override fun handleData(data: DrinksModel?) {
-        data?.run { viewAdapter.updateData(drinkList) }
+    private fun handleData(data: List<Drink>) {
+        (recyclerView.adapter as? DrinkAdapter)?.updateData(data)
     }
 
     override fun handleError(error: Throwable?) {

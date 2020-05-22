@@ -1,6 +1,6 @@
 package br.com.fornaro.domain.api
 
-import br.com.fornaro.domain.models.response.CategoriesResponse
+import br.com.fornaro.domain.api.response.CategoriesResponse
 import retrofit2.http.GET
 
 interface CategoryApi {

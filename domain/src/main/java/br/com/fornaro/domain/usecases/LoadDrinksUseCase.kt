@@ -2,7 +2,7 @@ package br.com.fornaro.domain.usecases
 
 import br.com.fornaro.domain.repositories.DrinksRepository
 
-class DrinksUseCases(
+class LoadDrinksUseCase(
     private val drinksRepository: DrinksRepository
 ) {
 

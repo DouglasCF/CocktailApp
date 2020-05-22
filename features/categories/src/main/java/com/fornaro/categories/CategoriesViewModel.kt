@@ -3,19 +3,19 @@ package com.fornaro.categories
 import androidx.lifecycle.viewModelScope
 import br.com.fornaro.android.viewmodel.BaseViewModel
 import br.com.fornaro.android.viewmodel.State
-import br.com.fornaro.domain.usecases.CategoryUseCases
+import br.com.fornaro.domain.usecases.LoadCategoriesUseCase
 import kotlinx.coroutines.launch
 
 class CategoriesViewModel(
-    private val categoryUseCases: CategoryUseCases
-) : BaseViewModel() {
+    private val loadCategoriesUseCase: LoadCategoriesUseCase
+) : BaseViewModel<List<String>>() {
 
     init {
         loadCategories()
     }
 
     fun loadCategories() = viewModelScope.launch {
-        _state.value = State.Loading
-        _state.value = State.runBlocking { categoryUseCases.loadCategories() }
+        state.value = State.Loading()
+        state.value = State.runBlocking { loadCategoriesUseCase.loadCategories() }
     }
 }

@@ -1,4 +1,4 @@
-package br.com.fornaro.domain.models.response
+package br.com.fornaro.domain.api.response
 
 data class DrinksResponse(
     val drinks: List<DrinkResponse>

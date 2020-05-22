@@ -2,8 +2,8 @@ package br.com.fornaro.domain
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.fornaro.domain.api.CategoryApi
-import br.com.fornaro.domain.models.response.CategoriesResponse
-import br.com.fornaro.domain.models.response.CategoryResponse
+import br.com.fornaro.domain.api.response.CategoriesResponse
+import br.com.fornaro.domain.api.response.CategoryResponse
 import br.com.fornaro.domain.repositories.CategoryRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -53,9 +53,9 @@ class CategoryRepositoryTest {
         val categoriesResponse = provideCategoriesResponse()
         coEvery { api.getCategories() } returns categoriesResponse
         val categories = repository.loadCategories()
-        assert(categories.categoryList[0].name == categoriesResponse.drinks[0].strCategory)
-        assert(categories.categoryList[1].name == categoriesResponse.drinks[1].strCategory)
-        assert(categories.categoryList[2].name == categoriesResponse.drinks[2].strCategory)
+        assert(categories[0] == categoriesResponse.drinks[0].strCategory)
+        assert(categories[1] == categoriesResponse.drinks[1].strCategory)
+        assert(categories[2] == categoriesResponse.drinks[2].strCategory)
     }
 }
 
