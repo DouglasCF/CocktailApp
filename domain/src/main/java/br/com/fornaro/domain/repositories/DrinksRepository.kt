@@ -1,7 +1,8 @@
 package br.com.fornaro.domain.repositories
 
 import br.com.fornaro.domain.api.DrinksApi
-import br.com.fornaro.domain.mappers.mapToDrinksModel
+import br.com.fornaro.domain.models.Drink
+import br.com.fornaro.domain.api.response.DrinksResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -15,4 +16,6 @@ class DrinksRepository(
         api.getDrinks(categoryName)
             .mapToDrinksModel()
     }
+
+    private fun DrinksResponse.mapToDrinksModel() = drinks.map { Drink(id = it.idDrink, name = it.strDrink, image = it.strDrinkThumb) }
 }

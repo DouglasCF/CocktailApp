@@ -9,21 +9,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import br.com.fornaro.android.fragments.BaseFragment
+import br.com.fornaro.android.fragments.StateHandler
 import br.com.fornaro.domain.api.NoConnectivityException
-import br.com.fornaro.domain.models.response.DrinkDetailModel
+import br.com.fornaro.domain.models.Drink
 import br.com.fornaro.drinkdetail.R
 import br.com.fornaro.drinkdetail.databinding.FragmentDrinkDetailBinding
-import kotlinx.android.synthetic.main.fragment_drink_detail.*
+import kotlinx.android.synthetic.main.fragment_drink_detail.errorView
+import kotlinx.android.synthetic.main.fragment_drink_detail.loadingView
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class DrinkDetailFragment : BaseFragment<DrinkDetailModel>() {
+class DrinkDetailFragment : Fragment(), StateHandler {
 
     private val args: DrinkDetailFragmentArgs by navArgs()
 
-    override val viewModel: DrinkDetailViewModel by viewModel {
+    private val viewModel: DrinkDetailViewModel by viewModel {
         parametersOf(args.drinkId)
     }
 
@@ -43,12 +45,17 @@ class DrinkDetailFragment : BaseFragment<DrinkDetailModel>() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.observeState(viewLifecycleOwner, this, ::handleData)
+    }
+
     override fun handleLoading(visible: Boolean) {
         loadingView.isVisible = visible
     }
 
-    override fun handleData(data: DrinkDetailModel?) {
-        data?.run { binding.drink = drink }
+    private fun handleData(data: Any?) {
+        binding.drink = data as Drink
     }
 
     override fun handleError(error: Throwable?) {

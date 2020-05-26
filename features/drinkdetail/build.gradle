@@ -1,5 +1,5 @@
 apply from: '../../base-build.gradle'
 
 dependencies {
-    api project(":core")
+    api featureDependencies
 }

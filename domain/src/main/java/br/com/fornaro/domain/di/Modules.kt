@@ -16,11 +16,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 private val useCasesModules = module {
-    single { CategoryUseCases(get()) }
+    single { LoadCategoriesUseCase(get()) }
     single { SearchUseCases() }
     single { FavoritesUseCases() }
-    single { DrinksUseCases(get()) }
-    single { DrinkDetailUseCases(get()) }
+    single { LoadDrinksUseCase(get()) }
+    single { LoadDrinkDetailUseCase(get()) }
 }
 
 private val repositoriesModules = module {

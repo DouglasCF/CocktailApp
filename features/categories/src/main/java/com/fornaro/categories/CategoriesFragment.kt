@@ -8,19 +8,21 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.fornaro.android.fragments.BaseFragment
+import br.com.fornaro.android.fragments.StateHandler
 import br.com.fornaro.categories.R
 import br.com.fornaro.domain.api.NoConnectivityException
-import br.com.fornaro.domain.models.CategoriesModel
-import kotlinx.android.synthetic.main.fragment_categories.*
+import kotlinx.android.synthetic.main.fragment_categories.errorView
+import kotlinx.android.synthetic.main.fragment_categories.loadingView
+import kotlinx.android.synthetic.main.fragment_categories.recyclerView
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class CategoriesFragment : BaseFragment<CategoriesModel>() {
+class CategoriesFragment : Fragment(), StateHandler {
 
-    override val viewModel: CategoriesViewModel by viewModel()
+    private val viewModel: CategoriesViewModel by viewModel()
 
     private val viewAdapter by lazy {
         CategoryAdapter {
@@ -41,6 +43,8 @@ class CategoriesFragment : BaseFragment<CategoriesModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+
+        viewModel.observeState(viewLifecycleOwner, this, ::handleData)
     }
 
     private fun setupRecyclerView() = with(recyclerView) {
@@ -53,8 +57,8 @@ class CategoriesFragment : BaseFragment<CategoriesModel>() {
         loadingView.isVisible = visible
     }
 
-    override fun handleData(data: CategoriesModel?) {
-        data?.run { viewAdapter.updateData(categoryList) }
+    private fun handleData(data: List<String>) {
+        viewAdapter.updateData(data)
     }
 
     override fun handleError(error: Throwable?) {
