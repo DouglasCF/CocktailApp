@@ -2,4 +2,5 @@ apply from: '../base-build.gradle'
 
 dependencies {
     implementation androidLibraries
+    kapt kaptLibraries
 }
